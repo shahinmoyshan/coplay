@@ -21,7 +21,7 @@ return [
 
     // URL settings
     'media_url' => '/uploads/', // Media URL
-    'asset_url' => '/', // Asset URL
+    'asset_url' => '/assets/', // Asset URL
 
     // Localization settings
     'lang' => 'en', // Default language
@@ -31,12 +31,6 @@ return [
 
     // TMDB Api key
     'TMDB_API_KEY' => '{REPLACE_WITH_YOUR_ACTUAL_TMDB_API_KEY}', // Get your TMDB API key from https://www.themoviedb.org
-
-    // Database connection settings
-    'database' => [
-        'driver' => 'sqlite', // Database driver
-        'file' => __DIR__ . '/database/sqlite.db', // SQLite Database filepath 
-    ],
 
     // Site general settings
     'cms' => [

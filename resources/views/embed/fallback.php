@@ -46,7 +46,7 @@
         </path>
     </svg>
 
-    <h2><?= __e('Video Unavailable') ?></h2>
+    <h2><?= _e('Video Unavailable') ?></h2>
 
 </body>
 

@@ -11,20 +11,20 @@ $view->layout('layout/master')
     <template x-if="watchlater.length > 0">
         <div>
             <div class="text-center md:flex items-center justify-between">
-                <h2 class="text-2xl font-semibold text-primary-200 mb-2 md:mb-0"><?= __e('Saved to Watchlist') ?>
+                <h2 class="text-2xl font-semibold text-primary-200 mb-2 md:mb-0"><?= _e('Saved to Watchlist') ?>
                 </h2>
-                <button @click="watchlater = []" class="text-rose-400 font-semibold"><?= __e('Clear All') ?></button>
+                <button @click="watchlater = []" class="text-rose-400 font-semibold"><?= _e('Clear All') ?></button>
             </div>
             <div class="flex justify-center md:justify-start mt-5">
                 <button @click="filter = 'all'"
                     :class="filter == 'all' ? 'text-primary-50 border-accent-400' : 'text-primary-400 hover:text-primary-200 border-transparent'"
-                    class="border-b-4 text-lg font-semibold"><?= __e('All') ?></button>
+                    class="border-b-4 text-lg font-semibold"><?= _e('All') ?></button>
                 <button @click="filter = 'movie'"
                     :class="filter == 'movie' ? 'text-primary-50 border-accent-400' : 'text-primary-400 hover:text-primary-200 border-transparent'"
-                    class="border-b-4 text-lg font-semibold ml-3"><?= __e('Movie') ?></button>
+                    class="border-b-4 text-lg font-semibold ml-3"><?= _e('Movie') ?></button>
                 <button @click="filter = 'tv'"
                     :class="filter == 'tv' ? 'text-primary-50 border-accent-400' : 'text-primary-400 hover:text-primary-200 border-transparent'"
-                    class="border-b-4 text-lg font-semibold ml-4"><?= __e('Tv Series') ?></button>
+                    class="border-b-4 text-lg font-semibold ml-4"><?= _e('Tv Series') ?></button>
             </div>
         </div>
     </template>
@@ -36,7 +36,7 @@ $view->layout('layout/master')
         </template>
     </div>
     <div x-cloak x-show="watchlater.length == 0" class="text-center py-4">
-        <h2 class="text-primary-400 text-2xl mb-1"><?= __e('Watchlist is Empty') ?></h2>
-        <a class="text-accent-400 hover:text-accent-500" href="<?= url() ?>">&larr; <?= __e('Home') ?></a>
+        <h2 class="text-primary-400 text-2xl mb-1"><?= _e('Watchlist is Empty') ?></h2>
+        <a class="text-accent-400 hover:text-accent-500" href="<?= url() ?>">&larr; <?= _e('Home') ?></a>
     </div>
 </main>

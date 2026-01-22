@@ -12,11 +12,11 @@
         "@alpinejs/persist": "^3.14.9",
         "fireline": "^1.0.7",
         "nprogress": "^0.2.0",
-        "swiper": "^11.2.6"
+        "swiper": "^12.0.3"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.17",
         "tailwindcss": "^4.0.17",
-        "vite": "^6.2.3"
+        "vite": "^7.3.1"
     }
 }

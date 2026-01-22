@@ -1,4 +1,4 @@
-<p class="text-primary-400 uppercase mt-4 mb-1"><?= __e('Photos') ?></p>
+<p class="text-primary-400 uppercase mt-4 mb-1"><?= _e('Photos') ?></p>
 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" x-data="{ isOpen: false, image: ''}">
     <?php foreach (array_slice($video->images['backdrops'] ?? [], 0, 16) as $photo): ?>
         <button x-on:click.prevent="isOpen = true, image='<?= $video->getImageUrl('w1280') . $photo['file_path'] ?>'">

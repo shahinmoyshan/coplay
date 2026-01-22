@@ -264,17 +264,6 @@ class HomeController
     }
 
     /**
-     * Renders the watchlater page containing the watchlist
-     * of the user.
-     *
-     * @return Response The rendered watchlater page.
-     */
-    public function watchlater()
-    {
-        return fireline('watchlater');
-    }
-
-    /**
      * Render the API page if the API feature is enabled.
      *
      * If the API feature is not enabled, it will trigger a 404 page not found error.

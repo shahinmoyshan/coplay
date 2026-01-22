@@ -4,14 +4,11 @@
 // Load the composer autoloader
 require __DIR__ . '/vendor/autoload.php';
 
-use Spark\Container;
-use Spark\Foundation\Providers\CommandsServiceProvider;
-
 /** @var \Spark\Foundation\Application $app */
 $app = require_once __DIR__ . '/bootstrap/app.php';
 
-$app->withContainer(function (Container $container) {
-    $container->addServiceProvider(new CommandsServiceProvider);
+$app->withContainer(function (\Spark\Container $container) {
+    $container->addServiceProvider(new \Spark\Foundation\Providers\CommandsServiceProvider);
 });
 
 $app->handleCommand(); // Run the application

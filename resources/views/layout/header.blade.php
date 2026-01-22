@@ -1,20 +1,20 @@
 <?php
 
 $menus = [
-    url('movie') => 'Movie',
-    url('tv') => 'Tv',
-    url('watchlist') => 'Watchlist',
+    home_url('movie') => 'Movie',
+    home_url('tv') => 'Tv',
+    home_url('watchlist') => 'Watchlist',
 ];
 
 if (is_feature_enabled('api')) {
-    $menus[url('api')] = 'Api';
+    $menus[home_url('api')] = 'Api';
 }
 
 ?>
 <header class="fixed z-40 bg-primary-950/90 backdrop-blur-lg inset-x-0 top-0">
     <div class="container">
         <div class="h-14 md:h-16 flex items-center justify-between">
-            <a href="<?= url() ?>" class="flex items-center text-accent-400">
+            <a href="<?= home_url() ?>" class="flex items-center text-accent-400">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                     <path fill="currentColor"
                         d="M20 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm.001 6c-.001 0-.001 0 0 0h-.465l-2.667-4H20l.001 4zM9.536 9 6.869 5h2.596l2.667 4H9.536zm5 0-2.667-4h2.596l2.667 4h-2.596zM4 5h.465l2.667 4H4V5zm0 14v-8h16l.002 8H4z">
@@ -25,19 +25,21 @@ if (is_feature_enabled('api')) {
             </a>
             <div class="hidden md:flex items-center">
                 <?php foreach ($menus as $url => $menu): ?>
-                    <a href="<?= $url ?>" class="px-3 py-2 hover:text-primary-300"><?= __e($menu) ?></a>
+                <a href="<?= $url ?>" class="px-3 py-2 hover:text-primary-300"><?= _e($menu) ?></a>
                 <?php endforeach ?>
             </div>
             <div class="relative" x-data="searchBox()" x-on:click.away="isOpen = false">
-                <input type="text" placeholder="<?= __e("Search (Press '/' to focus)") ?>" x-ref="search"
-                    x-on:keydown.window="
+                <input type="text" placeholder="<?= _e("Search (Press '/' to focus)") ?>" x-ref="search"
+                x-on:keydown.window="
                     if(event.keyCode === 191){
                         event.preventDefault();
                         $refs.search.focus();
-                    }" x-on:input.debounce.500ms="fetchResult" x-model="search" x-on:focus="isOpen = true"
-                    x-on:keydown="isOpen = true" x-on:keydown.escape.window="isOpen = false"
-                    x-on:keydown.shift.tab="isOpen = false"
-                    class="bg-primary-900/85 focus:bg-primary-900 text-sm rounded-full w-52 sm:w-60 md:w-64 px-4 pl-9 py-[6px] focus:outline-none focus:ring-2 ring-accent-500/75" />
+                    }"
+                x-on:input.debounce.500ms="fetchResult" x-model="search" x-on:focus="isOpen = true"
+                x-on:keydown="isOpen = true" x-on:keydown.escape.window="isOpen = false"
+                x-on:keydown.shift.tab="isOpen = false"
+                class="bg-primary-900/85 focus:bg-primary-900 text-sm rounded-full w-52 sm:w-60 md:w-64 px-4 pl-9 py-1.5 focus:outline-none focus:ring-2 ring-accent-500/75"
+                />
                 <div class="absolute top-0">
                     <svg class="fill-current w-4 text-primary-500 mt-2 ml-3" viewBox="0 0 24 24">
                         <path
@@ -48,7 +50,8 @@ if (is_feature_enabled('api')) {
                 <div x-cloak x-show="isLoading" x-transition class="absolute top-0 right-0">
                     <svg class="animate-spin w-4 text-primary-500 mt-2 mr-3" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                            stroke-width="4">
                         </circle>
                         <path class="opacity-75" fill="currentColor"
                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
@@ -82,8 +85,8 @@ if (is_feature_enabled('api')) {
         </svg>
     </button>
     <?php foreach ($menus as $url => $menu): ?>
-        <a x-on:click="mobileMenuOpen = false" href="<?= $url ?>"
-            class="hover:text-primary-300 text-lg px-4 py-2 mt-1 block"><?= __e($menu) ?></a>
+    <a x-on:click="mobileMenuOpen = false" href="<?= $url ?>"
+        class="hover:text-primary-300 text-lg px-4 py-2 mt-1 block"><?= _e($menu) ?></a>
     <?php endforeach ?>
 </aside>
 
@@ -96,7 +99,9 @@ if (is_feature_enabled('api')) {
             isLoading: false,
             fetchResult() {
                 this.isLoading = true
-                axios.post('/search', { keyword: this.search })
+                axios.post('/search', {
+                        keyword: this.search
+                    })
                     .then(resp => {
                         const target = this.$refs.searchResult;
                         target.innerHTML = resp.data;
@@ -106,7 +111,8 @@ if (is_feature_enabled('api')) {
             },
             handleSearchedOnOptions(event) {
                 // if the user presses backspace or the alpha-numeric keys, focus on the search field
-                if ((event.keyCode >= 65 && event.keyCode <= 90) || (event.keyCode >= 48 && event.keyCode <= 57) || event.keyCode === 8) {
+                if ((event.keyCode >= 65 && event.keyCode <= 90) || (event.keyCode >= 48 && event.keyCode <= 57) ||
+                    event.keyCode === 8) {
                     this.$refs.search.focus();
                 }
             }

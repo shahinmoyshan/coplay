@@ -9,9 +9,9 @@
                 <path d="m10 18 5.5-3-5.5-3z"></path>
             </svg>
             <div class="w-9/12">
-                <p class="font-semibold text-xl text-primary-200"><?= __e('Dynamic Player') ?></p>
+                <p class="font-semibold text-xl text-primary-200"><?= _e('Dynamic Player') ?></p>
                 <p class="text-sm mt-1">
-                    <?= __e('Our %s Player is fully Responsive and User-Friendly that Easy to Use.', cms('title', 'CoPlay')) ?>
+                    <?= _e('Our %s Player is fully Responsive and User-Friendly that Easy to Use.', cms('title', 'CoPlay')) ?>
                 </p>
             </div>
         </div>
@@ -26,8 +26,8 @@
                 </path>
             </svg>
             <div class="w-9/12">
-                <p class="font-semibold text-xl text-primary-200"><?= __e('Auto Update') ?></p>
-                <p class="text-sm mt-1"><?= __e('We Crawl at the request and Serve Up-To-Date Streaming Links.') ?></p>
+                <p class="font-semibold text-xl text-primary-200"><?= _e('Auto Update') ?></p>
+                <p class="text-sm mt-1"><?= _e('We Crawl at the request and Serve Up-To-Date Streaming Links.') ?></p>
             </div>
         </div>
     </div>

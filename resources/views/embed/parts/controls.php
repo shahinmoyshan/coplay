@@ -20,7 +20,7 @@
                 d="M20 3H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-5 5h-2V6h2zm4 0h-2V6h2zm1 5H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2zm-5 5h-2v-2h2zm4 0h-2v-2h2z">
             </path>
         </svg>
-        <span class="ml-1 md:ml-2"><?= __e('Switch Server') ?></span>
+        <span class="ml-1 md:ml-2"><?= _e('Switch Server') ?></span>
     </button>
     <template x-if="isTv">
         <button @click="episodeOpen = true"
@@ -32,7 +32,7 @@
                 </path>
                 <path fill="currentColor" d="M2 9h14v2H2zm0 4h9v2H2zm0 4h9v2H2z"></path>
             </svg>
-            <span class="ml-1 md:ml-2"><?= __e('Episode List') ?></span>
+            <span class="ml-1 md:ml-2"><?= _e('Episode List') ?></span>
         </button>
     </template>
 </div>

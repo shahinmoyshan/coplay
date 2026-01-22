@@ -1,3 +1,5 @@
+@props(['video'])
+
 <?php
 
 use Spark\Support\Str;
@@ -13,16 +15,16 @@ if ($isTv) {
 <div class="mt-8">
     <a href="<?= $slug ?>">
         <?php if (isset($video->poster_path) && !empty($video->poster_path)): ?>
-            <img src="<?= $video->getImageUrl() . $video->poster_path ?>" alt="poster"
-                class="hover:opacity-75 w-full rounded-md transition ease-in-out duration-150">
+        <img src="<?= $video->getImageUrl() . $video->poster_path ?>" alt="poster"
+            class="hover:opacity-75 w-full rounded-md transition ease-in-out duration-150">
         <?php else: ?>
-            <div class="text-center text-primary-400 opacity-25">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-8/12 m-auto" viewBox="0 0 24 24">
-                    <path fill="currentColor"
-                        d="M20 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm.001 6c-.001 0-.001 0 0 0h-.466l-2.667-4H20l.001 4zm-5.466 0-2.667-4h2.596l2.667 4h-2.596zm-2.404 0H9.535L6.869 5h2.596l2.666 4zM4 5h.465l2.667 4H4V5z">
-                    </path>
-                </svg>
-            </div>
+        <div class="text-center text-primary-400 opacity-25">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8/12 m-auto" viewBox="0 0 24 24">
+                <path fill="currentColor"
+                    d="M20 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm.001 6c-.001 0-.001 0 0 0h-.466l-2.667-4H20l.001 4zm-5.466 0-2.667-4h2.596l2.667 4h-2.596zm-2.404 0H9.535L6.869 5h2.596l2.666 4zM4 5h.465l2.667 4H4V5z">
+                </path>
+            </svg>
+        </div>
         <?php endif ?>
     </a>
     <div class="mt-2">
@@ -44,19 +46,16 @@ if ($isTv) {
                     array_map(
                         fn($id, $title) => sprintf(
                             '<a class="hover:text-accent-500" href="%s">%s</a>',
-                            route_url(
-                                'genre',
-                                [
-                                    'type' => $isTv ? 'tv' : 'movie',
-                                    'slug' => Str::slug($title ?? '') . '-' . $id
-                                ]
-                            ),
-                            $title
+                            route_url('genre', [
+                                'type' => $isTv ? 'tv' : 'movie',
+                                'slug' => Str::slug($title ?? '') . '-' . $id,
+                            ]),
+                            $title,
                         ),
                         array_keys($genres),
-                        array_values($genres)
-                    )
-                )
+                        array_values($genres),
+                    ),
+                ),
             ) ?>
         </div>
     </div>

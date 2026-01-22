@@ -1,4 +1,4 @@
-<section class="relative h-72 sm:h-80 md:h-96 lg:h-100 xl:h-110" :class="!isPlaying && 'cursor-pointer'" x-data='{
+<section class="relative h-72 sm:h-80 md:h-96 lg:h-120 xl:h-128" :class="!isPlaying && 'cursor-pointer'" x-data='{
     /** time: <?= e(microtime()) ?> */
     <?= $isTv ? "season: Alpine.\$persist({$video->number_of_seasons}).using(sessionStorage).as(\"se_{$video->id}\")," : '' ?>
     frameUrl() {

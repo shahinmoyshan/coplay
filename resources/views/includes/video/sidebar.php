@@ -23,7 +23,7 @@ $isTv ??= false;
                             d="M12.25 2c-5.514 0-10 4.486-10 10s4.486 10 10 10 10-4.486 10-10-4.486-10-10-10zM18 13h-6.75V6h2v5H18v2z">
                         </path>
                     </svg>
-                    <span class="text-xs hidden md:block"><?= __e('Remove') ?></span>
+                    <span class="text-xs hidden md:block"><?= _e('Remove') ?></span>
                 </button>
                 <button x-show="!isWatchLater(<?= $video->id ?>)" x-on:click="addToWatchLater(<?= $video->id ?>)"
                     class="text-primary-400 hover:text-primary-300 transition">
@@ -34,7 +34,7 @@ $isTv ??= false;
                         </path>
                         <path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z"></path>
                     </svg>
-                    <span class="text-xs hidden md:block"><?= __e('Watch Later') ?></span>
+                    <span class="text-xs hidden md:block"><?= _e('Watch Later') ?></span>
                 </button>
             </div>
             <?= $view->include('includes/video/parts/share') ?>
@@ -42,11 +42,11 @@ $isTv ??= false;
         <?php
         if (strtolower($video->status) !== 'released'): ?>
             <p class="text-center px-4 uppercase text-primary-300 text-sm italic font-semibold">
-                (<?= __e($video->status) ?>)
+                (<?= _e($video->status) ?>)
             </p>
         <?php endif ?>
         <div class="py-2 px-4 border-primary-800">
-            <p class="mb-1 uppercase text-primary-400 font-semibold"><?= __e('Rating') ?></p>
+            <p class="mb-1 uppercase text-primary-400 font-semibold"><?= _e('Rating') ?></p>
             <div class="flex items-center gap-1 justify-center md:justify-start">
                 <svg class="fill-current text-orange-500 w-5" viewBox="0 0 24 24">
                     <path
@@ -57,7 +57,7 @@ $isTv ??= false;
             </div>
         </div>
         <div class="border-t py-2 px-4 border-primary-800">
-            <p class="mb-1 uppercase text-primary-400 font-semibold"><?= __e('Genres') ?></p>
+            <p class="mb-1 uppercase text-primary-400 font-semibold"><?= _e('Genres') ?></p>
             <div class="text-primary-300 text-sm">
                 <?= $video->genres(
                     fn($genres) => join(
@@ -82,7 +82,7 @@ $isTv ??= false;
             </div>
         </div>
         <div class="border-t py-2 px-4 border-primary-800">
-            <p class="mb-1 uppercase text-primary-400 font-semibold"><?= __e('Languages') ?></p>
+            <p class="mb-1 uppercase text-primary-400 font-semibold"><?= _e('Languages') ?></p>
             <div class="text-primary-300 text-sm">
                 <?= $video->spoken_languages(
                     fn($languages) => join(
@@ -107,7 +107,7 @@ $isTv ??= false;
             </div>
         </div>
         <div class="border-t py-2 px-4 border-primary-800">
-            <p class="mb-1 uppercase text-primary-400 font-semibold"><?= __e('Countries') ?></p>
+            <p class="mb-1 uppercase text-primary-400 font-semibold"><?= _e('Countries') ?></p>
             <div class="text-primary-300 text-sm">
                 <?= $video->production_countries(
                     fn($countries) => join(
@@ -132,7 +132,7 @@ $isTv ??= false;
             </div>
         </div>
         <div class="border-t py-2 px-4 border-primary-800">
-            <p class="mb-1 uppercase text-primary-400 font-semibold"><?= __e('Companies') ?></p>
+            <p class="mb-1 uppercase text-primary-400 font-semibold"><?= _e('Companies') ?></p>
             <div class="text-primary-300 text-sm">
                 <?= $video->production_companies(
                     fn($companies) => join(
@@ -158,7 +158,7 @@ $isTv ??= false;
         </div>
         <?php if (isset($video->networks)): ?>
             <div class="border-t py-2 px-4 border-primary-800">
-                <p class="mb-1 uppercase text-primary-400 font-semibold"><?= __e('Networks') ?></p>
+                <p class="mb-1 uppercase text-primary-400 font-semibold"><?= _e('Networks') ?></p>
                 <div class="text-primary-300 text-sm">
                     <?= $video->networks(
                         fn($networks) => join(

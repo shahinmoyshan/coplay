@@ -22,7 +22,7 @@ $view->layout('layout/master')
                     </path>
                 </svg>
                 <span
-                    class="ml-2"><?= __e('%s in %s', [date('d M, Y', strtotime($info['birthday'] ?? '')), $info['place_of_birth'] ?? '']) ?></span>
+                    class="ml-2"><?= _e('%s in %s', [date('d M, Y', strtotime($info['birthday'] ?? '')), $info['place_of_birth'] ?? '']) ?></span>
             </div>
             <p class="text-primary-300 mt-8" x-data="{toggleMore: false}">
                 <?php
@@ -31,8 +31,8 @@ $view->layout('layout/master')
                     $hidden_words = join(' ', array_slice($words, 50));
                     $shown_words = join(' ', array_slice($words, 0, 50));
                     $trans = [
-                        'show_more' => __e('Read more'),
-                        'show_less' => __e('Read less')
+                        'show_more' => _e('Read more'),
+                        'show_less' => _e('Read less')
                     ];
                     echo <<<HTML
                         {$shown_words}
@@ -48,7 +48,7 @@ $view->layout('layout/master')
                 ?>
             </p>
             <?php if (isset($info['also_known_as'])): ?>
-                <h4 class="font-semibold mt-8"><?= __e('Also Known As:') ?></h4>
+                <h4 class="font-semibold mt-8"><?= _e('Also Known As:') ?></h4>
                 <p class="text-sm ml-[-0.25rem]">
                     <span class="px-1 bg-primary-900 inline-block rounded-sm m-1">
                         <?= join('</span><span class="px-1 bg-primary-900 inline-block rounded-sm m-1">', $info['also_known_as'] ?? []) ?>

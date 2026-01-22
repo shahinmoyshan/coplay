@@ -5,14 +5,14 @@
                 d="M5.5 15a3.51 3.51 0 0 0 2.36-.93l6.26 3.58a3.06 3.06 0 0 0-.12.85 3.53 3.53 0 1 0 1.14-2.57l-6.26-3.58a2.74 2.74 0 0 0 .12-.76l6.15-3.52A3.49 3.49 0 1 0 14 5.5a3.35 3.35 0 0 0 .12.85L8.43 9.6A3.5 3.5 0 1 0 5.5 15zm12 2a1.5 1.5 0 1 1-1.5 1.5 1.5 1.5 0 0 1 1.5-1.5zm0-13A1.5 1.5 0 1 1 16 5.5 1.5 1.5 0 0 1 17.5 4zm-12 6A1.5 1.5 0 1 1 4 11.5 1.5 1.5 0 0 1 5.5 10z">
             </path>
         </svg>
-        <span class="text-xs hidden md:block"><?= __e('Share') ?></span>
+        <span class="text-xs hidden md:block"><?= _e('Share') ?></span>
     </button>
     <div x-cloak x-show="openShare" x-transition
         class="fixed inset-0 w-full h-full bg-primary-950/65 z-40 flex items-center justify-center">
         <div x-on:click.away="openShare = false" x-on:keydown.escape.window="openShare = false"
             class="bg-primary-900 w-10/12 sm:w-8/12 md:w-6/12 lg:w-4/12 xl:w-3/12 px-6 py-5 rounded-xl shadow-md shadow-primary-900/25">
             <div class="flex items-center justify-between text-primary-300">
-                <span class="font-semibold text-lg"><?= __e('Share') ?></span>
+                <span class="font-semibold text-lg"><?= _e('Share') ?></span>
                 <button x-on:click="openShare = false" class="hover:text-primary-400">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
                         <path fill="currentColor"
@@ -75,7 +75,7 @@
             <?php
             if (is_feature_enabled('api')): ?>
                 <textarea
-                    x-on:click="navigator.clipboard.writeText($refs.embed.value) && alert('<?= __e('Embed Copied') ?>');"
+                    x-on:click="navigator.clipboard.writeText($refs.embed.value) && alert('<?= _e('Embed Copied') ?>');"
                     x-ref="embed"
                     class="cursor-pointer hover:bg-primary-800 mt-4 w-full h-24 rounded-md outline-none bg-primary-800/75 resize-none p-4 text-sm"><iframe src="<?= route_url('embed', ['type' => ($isTv ? 'tv' : 'movie'), 'id' => $video->id]) ?>" width="100%" height="100%" frameborder="0" scrolling="no" allowfullscreen></iframe></textarea>
             <?php endif ?>

@@ -6,8 +6,7 @@
     "license": "MIT",
     "require": {
         "php": ">=8.2",
-        "phpmailer/phpmailer": "^6.9",
-        "tinymvc/tinycore": "^1.0",
+        "tinymvc/tinycore": "^2.1",
         "voku/portable-ascii": "^2.0"
     },
     "authors": [
@@ -21,8 +20,11 @@
             "App\\": "./app"
         },
         "files": [
-            "./app/helpers.php"
+            "./bootstrap/helpers.php"
         ]
+    },
+    "suggest": {
+        "phpmailer/phpmailer": "Required for sending emails (^6.9)."
     },
     "scripts": {
         "post-root-package-install": [

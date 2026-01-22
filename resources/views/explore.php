@@ -9,8 +9,8 @@ $view->layout('layout/master')
 
     <?php if ($paginator->hasLinks()): ?>
         <?php $links = $paginator->getLinks(entity: [
-            'next' => __e('Next'),
-            'prev' => __e('Prev'),
+            'next' => _e('Next'),
+            'prev' => _e('Prev'),
         ]) ?>
         <div class="flex justify-center"><?= $links ?></div>
     <?php endif ?>

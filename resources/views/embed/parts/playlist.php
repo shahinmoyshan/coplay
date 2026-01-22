@@ -7,7 +7,7 @@
                     <path fill="currentColor" d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z">
                     </path>
                 </svg>
-                <span class="text-xl"><?= __e('Back To Video') ?></span>
+                <span class="text-xl"><?= _e('Back To Video') ?></span>
             </button>
             <button @click="episodeOpen = false" class="hover:text-primary-300">
                 <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
@@ -20,13 +20,13 @@
     </div>
     <template x-if="seasons.length > 1">
         <div>
-            <p class="text-primary-300 text-lg font-semibold mb-2"><?= __e('Seasons') ?></p>
+            <p class="text-primary-300 text-lg font-semibold mb-2"><?= _e('Seasons') ?></p>
             <div class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-8 xl:grid-cols-10 gap-3 mb-5">
                 <template x-for="se in seasons">
                     <?= $view->include('embed/parts/season') ?>
                 </template>
             </div>
-            <p class="text-primary-300 text-lg font-semibold mb-2"><?= __e('Episodes') ?></p>
+            <p class="text-primary-300 text-lg font-semibold mb-2"><?= _e('Episodes') ?></p>
         </div>
     </template>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
