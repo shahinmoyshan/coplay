@@ -1,22 +1,21 @@
-<?php
+@use('Spark\Support\Str')
+@props(['video', 'key' => null])
 
-use Spark\Support\Str;
-
-$isTv = isset($video->name) && !isset($video->title);
-if ($isTv) {
-    $slug = url('/tv/' . Str::slug($video->name) . '-' . $video->id);
-} else {
-    $slug = url('/movie/' . Str::slug($video->title) . '-' . $video->id);
-}
-
-?>
+@php
+    $isTv = isset($video->name) && !isset($video->title);
+    if ($isTv) {
+        $slug = home_url('/tv/' . Str::slug($video->name) . '-' . $video->id);
+    } else {
+        $slug = home_url('/movie/' . Str::slug($video->title) . '-' . $video->id);
+    }
+@endphp
 
 <div class="flex group text-primary-400 mt-2">
-    <a href="<?= $slug ?>" class="w-32 sm:w-36 md:w-40">
-        <?php if (isset($video->poster_path) && !empty($video->poster_path)): ?>
-            <img src="<?= $video->getImageUrl('w154') . $video->poster_path ?>" alt="poster"
+    <a href="{{ $slug }}" class="w-32 sm:w-36 md:w-40">
+        @if (isset($video->poster_path) && !empty($video->poster_path))
+            <img src="{{ $video->getImageUrl('w154') . $video->poster_path }}" alt="poster"
                 class="group-hover:opacity-75 rounded-md w-full object-cover transition ease-in-out duration-150">
-        <?php else: ?>
+        @else
             <div class="text-primary-400 opacity-25">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-10/12" viewBox="0 0 24 24">
                     <path fill="currentColor"
@@ -24,16 +23,16 @@ if ($isTv) {
                     </path>
                 </svg>
             </div>
-        <?php endif ?>
+        @endif
     </a>
     <div class="w-full px-4 flex flex-col justify-between text-sm">
         <div>
-            <a href="<?= $slug ?>"
-                class="flex items-start text-primary-200 font-semibold"><?= $isTv ? $video->name : $video->title ?></a>
+            <a href="{{ $slug }}"
+                class="flex items-start text-primary-200 font-semibold">{{ $isTv ? $video->name : $video->title }}</a>
             <span
-                class="text-primary-400 block my-[2px]"><?= date('d M, Y', strtotime(strval($isTv ? $video->first_air_date : $video->release_date))) ?></span>
+                class="text-primary-400 block my-0.5">{{ carbon(strval($isTv ? $video->first_air_date : $video->release_date))->format('d M, Y') }}</span>
             <p class="text-xs">
-                <?= $video->genres(
+                {!! $video->genres(
                     fn($genres) => join(
                         ', ',
                         array_map(
@@ -41,19 +40,19 @@ if ($isTv) {
                                 '<a class="hover:text-accent-500" href="%s">%s</a>',
                                 route_url('genre', [
                                     'type' => $isTv ? 'tv' : 'movie',
-                                    'slug' => Str::slug($title ?? '') . '-' . $id
+                                    'slug' => Str::slug($title ?? '') . '-' . $id,
                                 ]),
-                                $title
+                                $title,
                             ),
                             array_keys($genres),
-                            array_values($genres)
-                        )
-                    )
-                ) ?>
+                            array_values($genres),
+                        ),
+                    ),
+                ) !!}
             </p>
         </div>
-        <?php if (isset($key)): ?>
-            <span class="text-primary-400 text-2xl font-light mr-1"><?= $key ?></span>
-        <?php endif ?>
+        @isset($key)
+            <span class="text-primary-400 text-2xl font-light mr-1">{{ $key }}</span>
+        @endisset
     </div>
 </div>

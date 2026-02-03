@@ -1,8 +1,8 @@
 <section class="mb-6 text-center md:text-left">
-    <?php if (isset($title)): ?>
-    <h2 class="font-semibold text-2xl"><?= _e($title) ?></h2>
-    <?php endif ?>
-    <?php if (isset($description)): ?>
-    <p class="mt-2"><?= _e($description) ?></p>
-    <?php endif ?>
+    @isset($title)
+        <h2 class="font-semibold text-2xl">{{ $title }}</h2>
+    @endisset
+    @isset($description)
+        <p class="mt-2">{{ $description }}</p>
+    @endisset
 </section>

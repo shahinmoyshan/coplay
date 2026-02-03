@@ -1,45 +1,42 @@
-<?php
+@php
+    $menus = [
+        home_url('movie') => 'Movie',
+        home_url('tv') => 'Tv',
+        home_url('watchlist') => 'Watchlist',
+    ];
 
-$menus = [
-    home_url('movie') => 'Movie',
-    home_url('tv') => 'Tv',
-    home_url('watchlist') => 'Watchlist',
-];
-
-if (is_feature_enabled('api')) {
-    $menus[home_url('api')] = 'Api';
-}
-
-?>
+    if (is_feature_enabled('api')) {
+        $menus[home_url('api')] = 'Api';
+    }
+@endphp
 <header class="fixed z-40 bg-primary-950/90 backdrop-blur-lg inset-x-0 top-0">
     <div class="container">
         <div class="h-14 md:h-16 flex items-center justify-between">
-            <a href="<?= home_url() ?>" class="flex items-center text-accent-400">
+            <a href="{{ home_url() }}" class="flex items-center text-accent-400">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                     <path fill="currentColor"
                         d="M20 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm.001 6c-.001 0-.001 0 0 0h-.465l-2.667-4H20l.001 4zM9.536 9 6.869 5h2.596l2.667 4H9.536zm5 0-2.667-4h2.596l2.667 4h-2.596zM4 5h.465l2.667 4H4V5zm0 14v-8h16l.002 8H4z">
                     </path>
                     <path fill="currentColor" d="m10 18 5.5-3-5.5-3z"></path>
                 </svg>
-                <span class="font-semibold text-xl ml-3 hidden md:inline-block"><?= cms('title', 'CoPlay') ?></span>
+                <span class="font-semibold text-xl ml-3 hidden md:inline-block">{{ cms('title', 'CoPlay') }}</span>
             </a>
             <div class="hidden md:flex items-center">
-                <?php foreach ($menus as $url => $menu): ?>
-                <a href="<?= $url ?>" class="px-3 py-2 hover:text-primary-300"><?= _e($menu) ?></a>
-                <?php endforeach ?>
+                @foreach ($menus as $url => $menu)
+                    <a href="{{ $url }}" class="px-3 py-2 hover:text-primary-300">{{ __($menu) }}</a>
+                @endforeach
             </div>
             <div class="relative" x-data="searchBox()" x-on:click.away="isOpen = false">
-                <input type="text" placeholder="<?= _e("Search (Press '/' to focus)") ?>" x-ref="search"
-                x-on:keydown.window="
+                <input type="text" placeholder="Search (Press '/'' to focus)" x-ref="search"
+                    x-on:keydown.window="
                     if(event.keyCode === 191){
                         event.preventDefault();
                         $refs.search.focus();
                     }"
-                x-on:input.debounce.500ms="fetchResult" x-model="search" x-on:focus="isOpen = true"
-                x-on:keydown="isOpen = true" x-on:keydown.escape.window="isOpen = false"
-                x-on:keydown.shift.tab="isOpen = false"
-                class="bg-primary-900/85 focus:bg-primary-900 text-sm rounded-full w-52 sm:w-60 md:w-64 px-4 pl-9 py-1.5 focus:outline-none focus:ring-2 ring-accent-500/75"
-                />
+                    x-on:input.debounce.500ms="fetchResult" x-model="search" x-on:focus="isOpen = true"
+                    x-on:keydown="isOpen = true" x-on:keydown.escape.window="isOpen = false"
+                    x-on:keydown.shift.tab="isOpen = false"
+                    class="bg-primary-900/85 focus:bg-primary-900 text-sm rounded-full w-52 sm:w-60 md:w-64 px-4 pl-9 py-1.5 focus:outline-none focus:ring-2 ring-accent-500/75" />
                 <div class="absolute top-0">
                     <svg class="fill-current w-4 text-primary-500 mt-2 ml-3" viewBox="0 0 24 24">
                         <path
@@ -84,10 +81,10 @@ if (is_feature_enabled('api')) {
             </path>
         </svg>
     </button>
-    <?php foreach ($menus as $url => $menu): ?>
-    <a x-on:click="mobileMenuOpen = false" href="<?= $url ?>"
-        class="hover:text-primary-300 text-lg px-4 py-2 mt-1 block"><?= _e($menu) ?></a>
-    <?php endforeach ?>
+    @foreach ($menus as $url => $menu)
+        <a x-on:click="mobileMenuOpen = false" href="{{ $url }}"
+            class="hover:text-primary-300 text-lg px-4 py-2 mt-1 block">{{ __($menu) }}</a>
+    @endforeach
 </aside>
 
 

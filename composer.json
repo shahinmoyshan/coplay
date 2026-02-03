@@ -1,12 +1,12 @@
 {
-    "name": "tinymvc/tinymvc",
+    "name": "tinymvc/skeleton",
     "type": "project",
     "description": "TinyMvc is a minimalist PHP framework to craft blazing-fast RESTful APIs and modern web apps.",
     "keywords": ["shahinmoyshan", "tinymvc", "tinycore", "mvc", "web framework", "php framework", "framework"],
     "license": "MIT",
     "require": {
         "php": ">=8.2",
-        "tinymvc/tinycore": "^2.1",
+        "tinymvc/tinycore": "^2.2",
         "voku/portable-ascii": "^2.0"
     },
     "authors": [
@@ -21,17 +21,6 @@
         },
         "files": [
             "./bootstrap/helpers.php"
-        ]
-    },
-    "suggest": {
-        "phpmailer/phpmailer": "Required for sending emails (^6.9)."
-    },
-    "scripts": {
-        "post-root-package-install": [
-            "@php -r \"file_exists('env.php') || copy('env.example.php', 'env.php');\""
-        ],
-        "post-create-project-cmd": [
-            "@php spark key:generate"
         ]
     },
     "config": {

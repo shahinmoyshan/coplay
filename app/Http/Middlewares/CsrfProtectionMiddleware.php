@@ -5,12 +5,11 @@ namespace App\Http\Middlewares;
 use Spark\Foundation\Http\Middlewares\CsrfProtection as Middleware;
 
 /**
- * Class CsrfProtectionMiddleware
- *
- * A middleware class for CSRF protection that extends the
- * Spark\Foundation\Http\Middlewares\CsrfProtection class.
- *
- * @package Middlewares
+ * CSRF protection middleware.
+ * 
+ * This middleware provides Cross-Site Request Forgery (CSRF) protection
+ * for incoming HTTP requests. It verifies that requests contain a valid CSRF token,
+ * helping to prevent unauthorized actions on behalf of authenticated users.
  */
 class CsrfProtectionMiddleware extends Middleware
 {
@@ -19,6 +18,7 @@ class CsrfProtectionMiddleware extends Middleware
      * @var array
      */
     protected array $except = [
-        '/api/*' // Exclude all API routes from CSRF protection
+        '/api/*', // Exclude all API routes from CSRF protection
+        '/webhook/*', // Exclude all webhook routes from CSRF protection
     ];
 }

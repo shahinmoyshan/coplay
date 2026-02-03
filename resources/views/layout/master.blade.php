@@ -21,7 +21,6 @@
     </head>
 
     <body class="bg-primary-950 text-primary-50 font-sans" x-data="{ mobileMenuOpen: false }">
-
         {!! tailwind()->getPreloaderElement() !!}
 
         @include('layout.header')
@@ -35,6 +34,7 @@
 
         @unless (request()->isFirelineRequest())
         </div>
+
         @include('layout.footer')
     </body>
 
