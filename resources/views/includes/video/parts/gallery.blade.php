@@ -1,11 +1,11 @@
-<p class="text-primary-400 uppercase mt-4 mb-1"><?= _e('Photos') ?></p>
-<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" x-data="{ isOpen: false, image: ''}">
-    <?php foreach (array_slice($video->images['backdrops'] ?? [], 0, 16) as $photo): ?>
-        <button x-on:click.prevent="isOpen = true, image='<?= $video->getImageUrl('w1280') . $photo['file_path'] ?>'">
-            <img src="<?= $video->getImageUrl('w300') . $photo['file_path'] ?>" alt="image1"
+<p class="text-primary-400 uppercase mt-4 mb-1">{{ __('Photos') }}</p>
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" x-data="{ isOpen: false, image: '' }">
+    @foreach (array_slice($video->images['backdrops'] ?? [], 0, 16) as $photo)
+        <button x-on:click.prevent="isOpen = true, image='{{ $video->getImageUrl('w1280') . $photo['file_path'] }}'">
+            <img src="{{ $video->getImageUrl('w300') . $photo['file_path'] }}" alt="image1"
                 class="rounded-sm hover:opacity-75 transition ease-in-out duration-150">
         </button>
-    <?php endforeach ?>
+    @endforeach
     <div class="fixed z-30 bg-primary-950/65 top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto"
         x-cloak x-show="isOpen" x-transition>
         <div class="container mx-auto lg:px-32 rounded-lg overflow-y-auto">

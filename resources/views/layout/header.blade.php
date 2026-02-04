@@ -27,7 +27,7 @@
                 @endforeach
             </div>
             <div class="relative" x-data="searchBox()" x-on:click.away="isOpen = false">
-                <input type="text" placeholder="Search (Press '/'' to focus)" x-ref="search"
+                <input type="text" placeholder="Search (Press '/' to focus)" x-ref="search"
                     x-on:keydown.window="
                     if(event.keyCode === 191){
                         event.preventDefault();

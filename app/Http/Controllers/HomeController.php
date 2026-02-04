@@ -359,6 +359,6 @@ class HomeController
         }
 
         // Render the search result page
-        return fireline('ajax/search', ['results' => $results, 'keyword' => $keyword]);
+        return view('search', compact('results', 'keyword'));
     }
 }

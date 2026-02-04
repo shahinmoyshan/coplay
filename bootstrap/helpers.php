@@ -36,3 +36,15 @@ function tailwind()
 {
     return get(TailwindHelper::class);
 }
+
+function countdown(string $diff): string
+{
+    if (time() >= strtotime($diff)) {
+        return _e('Aired');
+    }
+
+    $dt_end = new DateTime($diff);
+    $remain = $dt_end->diff(new DateTime());
+
+    return ($remain->d > 0 ? $remain->d . ' ' . _e('days and') . ' ' : '') . $remain->h . ' ' . _e('hours');
+}
