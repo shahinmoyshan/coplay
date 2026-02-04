@@ -16,18 +16,9 @@ $year = date('Y', strtotime(strval($video->release_date ?? $video->first_air_dat
 
 <body class="bg-primary-900 group text-primary-50 font-sans relative w-full min-h-screen" x-data="embedManager()">
 
-    <?php
-
-    // include player controls such as: server and episode button
-    echo $view->include('embed/parts/controls');
-
-    // include multiple server switcher
-    echo $view->include('embed/parts/servers');
-
-    // // include episode and season switcher
-    echo $view->include('embed/parts/playlist');
-
-    ?>
+    @include('embed.parts.controls')
+    @include('embed.parts.servers')
+    @include('embed.parts.playlist')
 
     <!-- @Iframe: Render Embed from External Source -->
     <iframe class="absolute inset-0 w-full h-full" @load="isLoading = false" :src="frameUrl" frameborder="0"
@@ -63,11 +54,12 @@ $year = date('Y', strtotime(strval($video->release_date ?? $video->first_air_dat
                     this.isLoading = true, this.serverId = link.id, this.setFrameUrl(link.source)
                 },
                 setFrameUrl(url) {
-                    this.frameUrl = (this.isTv && url.includes("/embed/") && url.includes("?play=") ? (url + "&season=" + this.season + "&episode=" + this.episode) : url)
+                    this.frameUrl = (this.isTv && url.includes("/embed/") && url.includes("?play=") ? (url + "&season=" +
+                        this.season + "&episode=" + this.episode) : url)
                 },
                 switchServer(link) {
                     (this.serverId != link.id && (this.playVideo(link))),
-                        this.serverOpen = false;
+                    this.serverOpen = false;
                 },
                 startCurrentFrame() {
                     this.playVideo(this.links.filter((link) => link.id == this.serverId)[0] ?? this.default_play)
@@ -77,17 +69,21 @@ $year = date('Y', strtotime(strval($video->release_date ?? $video->first_air_dat
                         this.prevEp = this.episodes.filter((ep) => ep.episode_number == (this.episode - 1))[0] ?? null
                 },
                 switchEpisode(ep) {
-                    (this.episode != ep.episode_number && (this.links = ep.links, this.episode = ep.episode_number, this.default_play = this.links[0], this.startCurrentFrame(), this.updateEpisodePaginator())),
-                        this.episodeOpen = false
+                    (this.episode != ep.episode_number && (this.links = ep.links, this.episode = ep.episode_number, this
+                        .default_play = this.links[0], this.startCurrentFrame(), this.updateEpisodePaginator())),
+                    this.episodeOpen = false
                 },
                 autoPlay() {
-                    (this.isTv && (this.links = this.episodes.filter((ep) => ep.episode_number == this.episode)[0].links, this.default_play = this.links[0])),
-                        (this.isTv && this.updateEpisodePaginator()),
-                        this.startCurrentFrame()
+                    (this.isTv && (this.links = this.episodes.filter((ep) => ep.episode_number == this.episode)[0].links,
+                        this.default_play = this.links[0])),
+                    (this.isTv && this.updateEpisodePaginator()),
+                    this.startCurrentFrame()
                 },
                 switchSeason(se) {
-                    (this.season != se.season_number && (this.season = se.season_number, this.isLoading = true, (window.location = this.embed_url + "?season=" + se.season_number + (this.remember ? "&remember=1" : "")))),
-                        this.episodeOpen = false
+                    (this.season != se.season_number && (this.season = se.season_number, this.isLoading = true, (window
+                        .location = this.embed_url + "?season=" + se.season_number + (this.remember ?
+                            "&remember=1" : "")))),
+                    this.episodeOpen = false
                 }
             }
         };

@@ -47,7 +47,7 @@
             cancelPlay();
         }"></div>
 
-        {{-- @include('includes.video.player') --}}
+        @include('includes.video.player')
 
         <div :class="!isPlaying && 'md:-mt-12.5'" class="container relative z-30 rounded-xl bg-primary-900">
             <div class="flex flex-col md:flex-row py-5" :class="!isPlaying && 'md:px-1'">
