@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Unavailable - <?= cms('title', 'CoPlay') ?></title>
+    <title>Video Unavailable - {{ cms('title') }}</title>
     <style>
         * {
             margin: 0;
@@ -46,7 +46,7 @@
         </path>
     </svg>
 
-    <h2><?= _e('Video Unavailable') ?></h2>
+    <h2>{{ __('Video Unavailable') }}</h2>
 
 </body>
 

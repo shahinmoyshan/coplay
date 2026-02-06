@@ -2,7 +2,6 @@
 
 namespace App\Lib\Embed;
 
-use App\Lib\Embed\Includes\AutoUpdate;
 use App\Lib\Embed\Includes\EmbedConfigurator;
 use App\Lib\Embed\Exceptions\EmbedException;
 use App\Lib\Embed\Interfaces\IEmbed;
@@ -25,20 +24,10 @@ class Embed implements IEmbed
     protected $callbackUrl;
 
     /**
-     * @var AutoUpdate The auto update object.
-     */
-    protected $updater;
-
-    /**
      * @param EmbedConfigurator $config
      */
     public function __construct(protected EmbedConfigurator $config)
     {
-        /**
-         * @var AutoUpdate
-         * Create a new instance of AutoUpdate with the mode set to 'monthly'.
-         */
-        $this->updater = new AutoUpdate('monthly');
     }
 
     /**
@@ -49,16 +38,6 @@ class Embed implements IEmbed
     public function getConfig(): EmbedConfigurator
     {
         return $this->config;
-    }
-
-    /**
-     * Gets the auto update object.
-     *
-     * @return AutoUpdate The auto update object.
-     */
-    public function getUpdater(): AutoUpdate
-    {
-        return $this->updater;
     }
 
     /**
@@ -85,12 +64,6 @@ class Embed implements IEmbed
         if (!in_array($this->config->get('type'), ['movie', 'tv', 'anime', 'drama'])) {
             // Throw an exception if the type is invalid
             throw new EmbedException('Invalid Type: ' . $this->config->get('type'));
-        }
-
-        // If the auto embed update feature is enabled, perform the update check
-        if (is_feature_enabled('auto_embed_update')) {
-            // Check and update the schema if necessary
-            $this->getUpdater()->check();
         }
 
         $embeds = [];

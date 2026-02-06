@@ -59,4 +59,3 @@ class EmbedFallback implements IEmbedFallback
         return view('embed/fallback', ['config' => $this->config]);
     }
 }
-

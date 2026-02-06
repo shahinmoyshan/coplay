@@ -1,17 +1,16 @@
-<?php
-
-$isTv = isset($video->name) && !isset($video->title);
-$year = date('Y', strtotime(strval($video->release_date ?? $video->first_air_date)));
-?>
+@php
+    $isTv = isset($video->name) && !isset($video->title);
+    $year = date('Y', strtotime(strval($video->release_date ?? $video->first_air_date)));
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watch <?= $video->title ?? $video->name ?> (<?= $year ?>) Free Online in <?= cms('title', 'CoPlay') ?>
+    <title>Watch {{ $video->title ?? $video->name }} ({{ $year }}) Free Online in {{ cms('title') }}
     </title>
-    <?= tailwind() ?>
+    {!! tailwind() !!}
 </head>
 
 <body class="bg-primary-900 group text-primary-50 font-sans relative w-full min-h-screen" x-data="embedManager()">
@@ -31,20 +30,30 @@ $year = date('Y', strtotime(strval($video->release_date ?? $video->first_air_dat
                 serverOpen: false,
                 episodeOpen: false,
                 frameUrl: '',
-                isTv: <?= $isTv ? 'true' : 'false' ?>,
-                links: <?= json_encode($video->links) ?>,
-                seasons: <?= $isTv ? json_encode($video->seasons) : '[]' ?>,
-                episodes: <?= $isTv ? json_encode($video->episodes) : '[]' ?>,
-                season: <?= $isTv ? (request()->query('remember') == 1 ? "Alpine.\$persist({$video->season}).using(sessionStorage).as(\"se_{$video->id}\")" : $video->season) : '0' ?>,
-                episode: <?= $isTv ? (request()->query('remember') == 1 ? "Alpine.\$persist({$video->episode}).using(sessionStorage).as(\"se_{$video->season}_ep_{$video->id}\")" : $video->episode) : '0' ?>,
-                video_poster: '<?= $video->poster_path ?>',
-                video_backdrop: '<?= $video->backdrop_path ?>',
-                default_play: <?= json_encode($video->links[0]) ?>,
-                embed_url: '<?= route_url('embed', ['type' => $isTv ? 'tv' : 'movie', 'id' => $video->id]) ?>',
-                serverId: <?= request()->query('remember') == 1 ? 'Alpine.$persist("' . $video->links[0]['id'] . '").using(sessionStorage).as("server_' . $video->id . '")' : '"' . $video->links[0]['id'] . '"' ?>,
-                remember: <?= request()->query('remember') == 1 ? 'true' : 'false' ?>,
-                title: '<?= e($video->title ?? $video->name) ?>',
-                year: "<?= $year ?>",
+                isTv: {!! $isTv ? 'true' : 'false' !!},
+                links: {!! json_encode($video->links) !!},
+                seasons: {!! $isTv ? json_encode($video->seasons) : '[]' !!},
+                episodes: {!! $isTv ? json_encode($video->episodes) : '[]' !!},
+                season: {!! $isTv
+                    ? (request()->query('remember') == 1
+                        ? "Alpine.\$persist({$video->season}).using(sessionStorage).as(\"se_{$video->id}\")"
+                        : $video->season)
+                    : '0' !!},
+                episode: {!! $isTv
+                    ? (request()->query('remember') == 1
+                        ? "Alpine.\$persist({$video->episode}).using(sessionStorage).as(\"se_{$video->season}_ep_{$video->id}\")"
+                        : $video->episode)
+                    : '0' !!},
+                video_poster: '{!! $video->poster_path !!}',
+                video_backdrop: '{!! $video->backdrop_path !!}',
+                default_play: {!! json_encode($video->links[0]) !!},
+                embed_url: '{!! route_url('embed', ['type' => $isTv ? 'tv' : 'movie', 'id' => $video->id]) !!}',
+                serverId: {!! request()->query('remember') == 1
+                    ? 'Alpine.$persist("' . $video->links[0]['id'] . '").using(sessionStorage).as("server_' . $video->id . '")'
+                    : '"' . $video->links[0]['id'] . '"' !!},
+                remember: {!! request()->query('remember') == 1 ? 'true' : 'false' !!},
+                title: '{{ $video->title ?? $video->name }}',
+                year: "{!! $year !!}",
                 nextEp: null,
                 prevEp: null,
                 init() {

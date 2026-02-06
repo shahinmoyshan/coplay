@@ -1,17 +1,16 @@
 <section class="flex flex-row flex-wrap mt-4">
     <div class="w-full md:w-6/12">
         <div class="md:mr-3 px-2 py-3 flex rounded-sm bg-primary-900 text-primary-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3/12 pr-2 fill-current text-accent-400"
-                viewBox="0 0 24 24">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3/12 pr-2 fill-current text-accent-400" viewBox="0 0 24 24">
                 <path
                     d="M20 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm.001 6c-.001 0-.001 0 0 0h-.465l-2.667-4H20l.001 4zM9.536 9 6.869 5h2.596l2.667 4H9.536zm5 0-2.667-4h2.596l2.667 4h-2.596zM4 5h.465l2.667 4H4V5zm0 14v-8h16l.002 8H4z">
                 </path>
                 <path d="m10 18 5.5-3-5.5-3z"></path>
             </svg>
             <div class="w-9/12">
-                <p class="font-semibold text-xl text-primary-200"><?= _e('Dynamic Player') ?></p>
+                <p class="font-semibold text-xl text-primary-200">{{ __('Dynamic Player') }}</p>
                 <p class="text-sm mt-1">
-                    <?= _e('Our %s Player is fully Responsive and User-Friendly that Easy to Use.', cms('title', 'CoPlay')) ?>
+                    {{ __('Our %s Player is fully Responsive and User-Friendly that Easy to Use.', cms('title', 'CoPlay')) }}
                 </p>
             </div>
         </div>
@@ -26,8 +25,8 @@
                 </path>
             </svg>
             <div class="w-9/12">
-                <p class="font-semibold text-xl text-primary-200"><?= _e('Auto Update') ?></p>
-                <p class="text-sm mt-1"><?= _e('We Crawl at the request and Serve Up-To-Date Streaming Links.') ?></p>
+                <p class="font-semibold text-xl text-primary-200">{{ __('Auto Update') }}</p>
+                <p class="text-sm mt-1">{{ __('We Crawl at the request and Serve Up-To-Date Streaming Links.') }}</p>
             </div>
         </div>
     </div>

@@ -1,11 +1,13 @@
 <section class="text-center mt-4">
     <div class="flex justify-center">
         <button @click="switchTab('movie')"
-            :class="tabOpen == 'movie' ? 'text-primary-50 border-accent-400' : 'text-primary-400 hover:text-primary-200 border-transparent'"
-            class="border-b-4 text-lg font-semibold"><?= _e('Movie') ?></button>
+            :class="tabOpen == 'movie' ? 'text-primary-50 border-accent-400' :
+                'text-primary-400 hover:text-primary-200 border-transparent'"
+            class="border-b-4 text-lg font-semibold">{{ __('Movie') }}</button>
         <button @click="switchTab('tv')"
-            :class="tabOpen == 'tv' ? 'text-primary-50 border-accent-400' : 'text-primary-400 hover:text-primary-200 border-transparent'"
-            class="border-b-4 text-lg font-semibold ml-4"><?= _e('Tv Series') ?></button>
+            :class="tabOpen == 'tv' ? 'text-primary-50 border-accent-400' :
+                'text-primary-400 hover:text-primary-200 border-transparent'"
+            class="border-b-4 text-lg font-semibold ml-4">{{ __('Tv Series') }}</button>
     </div>
     <div x-cloak x-show="tabOpen == 'movie'" class="mt-6">
         <input type="text" @change="initFrame()" x-model="tmdb"

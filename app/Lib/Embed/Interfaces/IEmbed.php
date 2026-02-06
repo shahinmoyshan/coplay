@@ -18,12 +18,5 @@ interface IEmbed
      * @return array Links for the embed player.
      */
     public function getLinks(): array;
-
-    /**
-     * Get the auto update object.
-     *
-     * @return IAutoUpdate Auto update object.
-     */
-    public function getUpdater(): IAutoUpdate;
 }
 

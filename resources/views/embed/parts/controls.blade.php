@@ -15,24 +15,23 @@
     class="hidden group-hover:flex items-center absolute z-40 bg-accent-400 font-semibold text-lg w-max top-0 inset-x-0 mx-auto rounded-b-xl">
     <button @click="serverOpen = true" :class="!isTv && 'rounded-br-xl'"
         class="flex items-center rounded-bl-xl hover:bg-accent-500 px-3 py-1 md:text-xl md:px-5 md:py-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-[20px] h-[20px] md:w-[28px] md:h-[28px]" viewBox="0 0 24 24">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-7 md:h-7" viewBox="0 0 24 24">
             <path fill="currentColor"
                 d="M20 3H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-5 5h-2V6h2zm4 0h-2V6h2zm1 5H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2zm-5 5h-2v-2h2zm4 0h-2v-2h2z">
             </path>
         </svg>
-        <span class="ml-1 md:ml-2"><?= _e('Switch Server') ?></span>
+        <span class="ml-1 md:ml-2">{{ __('Switch Server') }}</span>
     </button>
     <template x-if="isTv">
         <button @click="episodeOpen = true"
             class="flex items-center rounded-br-xl hover:bg-accent-500 px-3 py-1 md:text-xl md:px-5 md:py-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-[20px] h-[20px] md:w-[28px] md:h-[28px]"
-                viewBox="0 0 24 24">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-7 md:h-7" viewBox="0 0 24 24">
                 <path fill="currentColor"
                     d="M13 16.493C13 18.427 14.573 20 16.507 20s3.507-1.573 3.507-3.507c0-.177-.027-.347-.053-.517H20V6h2V4h-3a1 1 0 0 0-1 1v8.333a3.465 3.465 0 0 0-1.493-.346A3.51 3.51 0 0 0 13 16.493zM2 5h14v2H2z">
                 </path>
                 <path fill="currentColor" d="M2 9h14v2H2zm0 4h9v2H2zm0 4h9v2H2z"></path>
             </svg>
-            <span class="ml-1 md:ml-2"><?= _e('Episode List') ?></span>
+            <span class="ml-1 md:ml-2">{{ __('Episode List') }}</span>
         </button>
     </template>
 </div>
