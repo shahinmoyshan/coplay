@@ -327,7 +327,6 @@ class TailwindHelper
             'root' => '',
             'style' => '',
             'script' => '',
-            'preloader' => [],
             'vite' => vite()
         ], $config);
     }
@@ -358,27 +357,6 @@ class TailwindHelper
         if ($fontPath) {
             $this->addAsset('style', $fontPath);
         }
-    }
-
-    /**
-     * Sets the preloader configuration.
-     *
-     * @param array $preloader The preloader configuration array.
-     * @return void
-     */
-    public function setPreloader(array $preloader): void
-    {
-        $this->config['preloader'] = $preloader;
-    }
-
-    /**
-     * Retrieves the preloader element as a string.
-     *
-     * @return string The preloader element HTML or an empty string if not set.
-     */
-    public function getPreloaderElement(): string
-    {
-        return sprintf('<div id="preloader">%s</div>', $this->config['preloader']['element'] ?? '');
     }
 
     /**
@@ -601,11 +579,6 @@ class TailwindHelper
     {
         $style = $this->config['style'] ?? '';
         $script = $this->config['script'] ?? '';
-
-        if (isset($this->config['preloader'])) {
-            $style .= $this->config['preloader']['style'] ?? '';
-            $script .= "window.addEventListener('load', () => {const preloader = document.getElementById('preloader'); preloader && preloader.remove()});";
-        }
 
         return sprintf(
             '%s<style>[x-cloak] { display: none !important; } :root { %s } %s</style><script>%s%s</script>%s',

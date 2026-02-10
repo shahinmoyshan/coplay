@@ -15,6 +15,6 @@
     <div :class="episode != ep.episode_number && 'group-hover/ep:bg-primary-900/30'"
         class="absolute bx-shadow bg-primary-900/15 inset-0 w-full h-full flex justify-end p-2 md:p-3 flex-col rounded-md">
         <p class="text-primary-300 text-sm" x-text="'S'+ep.season_number+' E'+ep.episode_number"></p>
-        <p x-text="ep.name" class="text-primary-100 font-semibold"></p>
+        <p x-html="ep.name" class="text-primary-100 font-semibold"></p>
     </div>
 </div>

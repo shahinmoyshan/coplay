@@ -4,8 +4,8 @@ namespace App\Lib\Tmdb;
 
 use App\Lib\Tmdb\Exceptions\TmdbClientException;
 use App\Lib\Tmdb\Interfaces\ITmdbClient;
-use ArrayAccess;
-use Spark\Utils\Http;
+use Spark\Helpers\HttpRequest;
+use Spark\Helpers\HttpResponse;
 
 /**
  * This is a Helper Class to help fetch data from TMDB
@@ -290,25 +290,30 @@ class TmdbClient implements ITmdbClient
      *
      * @param string $endpoint The endpoint to request.
      * @param array $params The optional parameters to pass with the request.
-     * @return ArrayAccess The response as an array with the following keys:
+     * @return HttpResponse The response as an array with the following keys:
      *     - status: The HTTP status code of the response.
      *     - body: The response body as an array.
      * @throws TmdbClientException If the request fails.
      */
-    public function send(string $endpoint, array $params = []): ArrayAccess
+    public function send(string $endpoint, array $params = []): HttpResponse
     {
-        $resp = get(Http::class)
-            // Set the Accept header to JSON
-            ->header('Accept', 'application/json')
+        // Create a new HTTP request to the TMDB API with the given endpoint and parameters
+        $http = new HttpRequest(
+            method: 'GET',
+            url: 'http://api.themoviedb.org/3/' . trim($endpoint, '/'),
+            params: $params
+        );
+
+        // Set the necessary headers for the TMDB API request and execute the request
+        $resp = $http->withHeader('Accept', 'application/json')
             // Set the Content-Type header to JSON
-            ->header('Content-Type', 'application/json;charset=utf-8')
+            ->withHeader('Content-Type', 'application/json;charset=utf-8')
             // Set the Authorization header with the API key
-            ->header('Authorization', sprintf('Bearer %s', config('TMDB_API_KEY')))
-            // Make the request to the TMDB API
-            ->get('http://api.themoviedb.org/3/' . trim($endpoint, '/'), $params);
+            ->withHeader('Authorization', sprintf('Bearer %s', config('TMDB_API_KEY')))
+            ->execute(); // Execute the request and get the response
 
         // If the request failed, throw an exception
-        if (!$resp->isSuccess()) {
+        if ($resp->failed()) {
             throw new TmdbClientException('Tmdb Client Error: ' . $resp->text(), $resp->status);
         }
 

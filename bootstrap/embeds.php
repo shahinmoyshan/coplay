@@ -77,7 +77,7 @@ return [
             "movie" => "?video_id={tmdb}&tmdb=1",
             "tv" => "?video_id={tmdb}&tmdb=1&season={season}&episode={episode}"
         ],
-        "callback" => '$apiUrl = $config->replaceEmbedUrlSegments($embedSource); $apiResp = http(url:$apiUrl); if ($apiResp->ok()) { redirect(trim($apiResp->body()));}',
+        "callback" => '$url = $config->replaceEmbedUrlSegments($embedSource); $resp = http(url: $url); $resp->ok() && redirect($resp->body());',
         "priority" => 58,
         "name" => "Mirror Alt",
         "quality" => "720p",
