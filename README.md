@@ -2,7 +2,7 @@
 
 CoPlay is a free PHP application that brings the world of movies, TV series, anime, and drama right to your fingertips. Enjoy a seamless streaming experience without any subscriptions or hidden fees.
 
-[CoPlay Live Demo](http://coplay.evolesoft.com)
+[CoPlay Live Demo](https://coplay.free.nf)
 
 ![home](https://github.com/user-attachments/assets/d35cd418-f638-4794-9aab-0876a57bde94)
 ![player](https://github.com/user-attachments/assets/74d96d0d-91a6-4212-88b1-a0e2c65782dd)
@@ -28,6 +28,7 @@ CoPlay is a free PHP application that brings the world of movies, TV series, ani
 
     // generate application encryption key
     php spark key:generate
+    npm i && npm run build && rm -rf node_modules
    ```
 5. **Configuation:** open env.php file and replace TMDB Api Key and also theme and CMS settings.
 6. **Start the Application:**
